@@ -1,0 +1,12 @@
+.picture {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  background-color: gray;
+}
+
+
+.centerDiv {
+  margin: 0 auto 0 auto;
+  width: 30%;
+}
