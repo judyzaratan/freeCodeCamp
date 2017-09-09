@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Random Quote</title>
+</head>
+
+<body>
+  <div class="quote">
+
+  <div class="">
+    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=" data-size="large">
+Tweet</a>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="application/javascript">
+    $.ajax({
+        url: "https://api.forismatic.com/api/1.0/",
+        jsonp: "jsonp",
+        dataType: "jsonp",
+        data: {
+          method: "getQuote",
+          lang: "en",
+          format: "jsonp"
+        }
+      })
+      .done(loadj);
+    function loadj(data) {
+      console.log(data);
+      $(".quote").text(data.quoteText);
+    };
+  </script>
+</body>
+
+</html>
