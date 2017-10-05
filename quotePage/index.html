@@ -3,93 +3,54 @@
 
 <head>
   <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">  <link rel="stylesheet"
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
   integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
   crossorigin="anonymous">
   <title>Random Quote</title>
-  <style media="screen">
-  body {
-  background: url("road-sun-rays-path.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-    html, body{
-      font-family: 'Raleway', Arial, sans-serif;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .content{
-      position: relative;
-      padding: 10px 10px 10px 10px;
-      color: white;
-    }
-    .text{
-      margin: 0 auto;
-      width: 50%;
-      text-align: center;
-      opacity: 1;
-    }
-    .quote{
-      margin: 0 auto;
-      width: 50%;
-      text-align: center;
-      font-size: 150%;
-
-    }
-    .author{
-        margin: 0 auto;
-        width: 50%;
-        text-align: center;
-    }
-    .buttons{
-      margin: 0 auto;
-      width: 50%;
-      text-align: center;
-    }
-    .btn {
-      padding: 10px ;
-    }
-
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <div class="container">
     <div class="content">
 
-    <div class="text">
-      <h3>Random Quote Machine</h3>
+      <div class="text">
+        <h3>Random Quote Machine</h3>
+        <br><br>
 
-    <section class="quote"></section>
-    <section class="author"></section>
-    <section class="buttons">
+        <section class="quote"></section>
+        <br>
+        <section class="author"></section>
 
-      <a id="generateQuote" class="btn btn-primary" href="#">Random</a>
+        <section class="buttons">
+          <br>
+          <br>
 
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-      class="twitter-share-button btn btn-primary" data-show-count="false">Tweet</a><script async
-      src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </section>
+          <a id="generateQuote" class="btn btn-primary" href="#">Random</a>
+
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button btn btn-primary"
+          data-show-count="false">Tweet</a>
+          <!-- <script async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"> -->
+          </script>
+        </section>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous">
-  </script>
-    <script type="application/javascript">
-    $("#generateQuote").click(randomQuote);
-    function randomQuote(){
-      console.log('function ran');
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"> </script>
+
+  <script type="application/javascript">
+      $("#generateQuote").click(randomQuote);
+      function randomQuote() {
+        console.log('function ran');
+
       $.ajax({
           url: "https://api.forismatic.com/api/1.0/",
           jsonp: "jsonp",
@@ -99,24 +60,23 @@
             lang: "en",
             format: "jsonp"
           }
-        })
-        .done(loadj);
-      };
-      randomQuote();
+        }).done(loadj);
+    };
+    randomQuote();
 
-      function loadj(data) {
-        var encodeStr = "";
-        $(".quote").text(data.quoteText);
-        data.quoteAuthor ? data.quoteAuthor : "Anonymous";
-        authorText = " - " + data.quoteAuthor
-        $(".author").text(authorText);
+    function loadj(data) {
+      var encodeStr = "";
+      $(".quote").text(data.quoteText);
+      data.quoteAuthor ? data.quoteAuthor : "Anonymous";
+      authorText = " - " + data.quoteAuthor
+      $(".author").text(authorText);
 
-        encodeQuote = encodeURI(data.quoteText);
-        encodeAuthor = encodeURI(authorText)
-        $(".twitter-share-button").attr("href",
+      encodeQuote = encodeURI("\'" + data.quoteText + "\'");
+      encodeAuthor = encodeURI(authorText)
+      $(".twitter-share-button").attr("href",
         "https://twitter.com/intent/tweet?text=" + encodeQuote + encodeAuthor)
-      };
-    </script>
+    };
+  </script>
 
 </body>
 
